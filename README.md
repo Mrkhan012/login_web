@@ -9,17 +9,29 @@ This project utilizes Firebase Authentication and Firebase Realtime Database to 
 ⚙️ Features Implemented
 User Authentication:
 
-Sign up and login using email and password.
-Authentication state is managed with GetX for seamless navigation between screens.
-User Data Storage:
+Responsive UI:
 
-User information such as email, date of birth, and registration time is stored in Firebase Realtime Database under the user’s unique ID.
-Ensures that all user-related data is securely saved and easily retrievable.
-Automatic Screen Navigation:
+Utilizes FractionallySizedBox and MediaQuery for scaling UI elements across different screen sizes (mobile, tablet, and web).
+Preserves original design using custom background images and styles.
+Firebase Integration:
 
-Based on the authentication state, users are automatically redirected to either the login screen or home screen.
-This is managed using GetX's ever listener to track authentication status.
-Registration Time Tracking:
+Uses Firebase Authentication for email/password-based login and registration.
+Integrates Firebase services for social logins (Google, GitHub, Facebook).
+Custom Widgets:
 
-Captures the exact time when a user registers and saves it in the database as registrationTime in ISO 8601 format.
-Helps in analyzing user sign-up patterns and managing user data effectively.
+Implements CustomTextFormField for consistent input styling.
+Displays error messages with GetX snackbars.
+State Management:
+
+Manages authentication state using GetX Controllers (AuthController).
+Toggles between Login and Register forms dynamically.
+Key Functionalities:
+
+Login: Validates email and password, authenticates using Firebase.
+Register: Accepts additional details like Date of Birth (DOB), registers user via Firebase.
+Forgot Password: Placeholder for password recovery.
+Social Logins: Placeholder for Google, GitHub, and Facebook login.
+Design Elements:
+
+Uses custom assets (login.png, login_background.png).
+Consistent typography with the Gilroy font family.
