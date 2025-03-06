@@ -42,28 +42,34 @@ class AuthController extends GetxController {
   }
 
   Future<void> register(String email, String password, String dob) async {
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+  try {
+    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
 
-      if (userCredential.user != null) {
-        await database.child("users").child(userCredential.user!.uid).set({
-          "email": email,
-          "dob": dob,
-        });
-      }
-    } catch (e) {
-      Get.snackbar(
-        "Registration Failed",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: const Color(0xFF003465),
-        colorText: Colors.white,
-      );
+    if (userCredential.user != null) {
+      // Get current time
+      String registrationTime = DateTime.now().toIso8601String(); 
+
+      await database.child("users").child(userCredential.user!.uid).set({
+        "email": email,
+        "dob": dob,
+        "registrationTime": registrationTime, 
+      });
     }
+  } catch (e) {
+    Get.snackbar(
+      "Registration Failed",
+      e.toString(),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: const Color(0xFF003465),
+      colorText: Colors.white,
+    );
   }
+}
+
+  
 
   Future<void> signOut() async {
     await auth.signOut();
