@@ -48,7 +48,8 @@ class _LoginViewState extends State<LoginView> {
               Center(
                 child: Image.asset(
                   "assets/PNG/login.png",
-                  height: screenHeight * 0.98,
+                  width: screenWidth *12,
+                  height: screenHeight * 1,
                 ),
               ),
               FractionallySizedBox(
@@ -116,7 +117,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           const Gap(8),
                           Align(
-                            alignment: Alignment.centerRight,
+                            alignment: Alignment.centerLeft,
                             child: Text(
                               'Forgot Password?',
                               style: TextStyle(
