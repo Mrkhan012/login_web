@@ -23,6 +23,16 @@ class _LoginViewState extends State<LoginView> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    // Define width factors based on screen width
+    double widthFactor;
+    if (screenWidth < 600) {
+      widthFactor = 0.9; // Mobile
+    } else if (screenWidth < 1024) {
+      widthFactor = 0.6; // Tablet
+    } else {
+      widthFactor = 0.27; 
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -42,22 +52,19 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               FractionallySizedBox(
-                widthFactor: screenWidth < 600 ? 0.8 : 0.24,
+                widthFactor: widthFactor,
                 child: Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
                     color: const Color(0x475782C1),
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        width: 2.13,
-                        color: Color(0xFF5882C1),
-                      ),
+                  
                       borderRadius: BorderRadius.circular(28.46),
                     ),
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.02,
+                      horizontal: screenWidth * 0.03,
                     ),
                     child: SingleChildScrollView(
                       child: Column(
@@ -80,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                             'Email',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: screenWidth < 600 ? 12 : 13,
+                              fontSize: 12,
                               fontFamily: 'Gilroy-Medium',
                               fontWeight: FontWeight.w400,
                             ),
@@ -96,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                             'Password',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: screenWidth < 600 ? 12 : 13,
+                              fontSize: 12,
                               fontFamily: 'Gilroy-Medium',
                               fontWeight: FontWeight.w400,
                             ),
@@ -107,24 +114,26 @@ class _LoginViewState extends State<LoginView> {
                             hintText: 'Password',
                             obscureText: true,
                           ),
-                          Gap(8),
-                          Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'Gilroy-Medium',
-                              fontWeight: FontWeight.w400,
+                          const Gap(8),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontFamily: 'Gilroy-Medium',
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
-          
                           const Gap(20),
                           if (isRegister) ...[
                             Text(
                               'Date of Birth',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth < 600 ? 12 : 13,
+                                fontSize: 12,
                                 fontFamily: 'Gilroy-Medium',
                                 fontWeight: FontWeight.w400,
                               ),
@@ -151,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                                 final password =
                                     passwordController.text.trim();
                                 final dob = dobController.text.trim();
-          
+
                                 if (email.isNotEmpty && password.isNotEmpty) {
                                   if (isRegister) {
                                     if (dob.isNotEmpty) {
@@ -178,11 +187,11 @@ class _LoginViewState extends State<LoginView> {
                               },
                               child: Text(
                                 isRegister ? 'Register' : 'Sign in',
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white, fontSize: 14),
                               ),
                             ),
                           ),
-                          Gap(16),
+                          const Gap(16),
                           Center(
                             child: Text(
                               'or continue with',
@@ -194,17 +203,16 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             ),
                           ),
-                          Gap(8),
+                          const Gap(8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Image.asset("assets/PNG/google.png"),
                               Image.asset("assets/PNG/githhub.png"),
-          
                               Image.asset("assets/PNG/facebook.png"),
                             ],
                           ),
-                          Gap(12),
+                          const Gap(12),
                           Center(
                             child: TextButton(
                               onPressed: () {
@@ -216,7 +224,7 @@ class _LoginViewState extends State<LoginView> {
                                 isRegister
                                     ? 'Already have an account? Login'
                                     : 'Don’t have an account yet? Register for free',
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
